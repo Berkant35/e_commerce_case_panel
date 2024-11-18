@@ -1,6 +1,8 @@
 import 'package:ECommercePanel/features/category/data/datasources/api_datasource/category_remote_datasource.dart';
 import 'package:ECommercePanel/features/category/domain/repositories/category_repository.dart';
 import 'package:ECommercePanel/features/category/domain/usecases/add_category.dart';
+import 'package:ECommercePanel/features/category/domain/usecases/delete_category.dart';
+import 'package:ECommercePanel/features/category/domain/usecases/get_category.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/api_helper/api_connector.dart';
@@ -33,7 +35,8 @@ void initializeDependencies() {
             categoryRemoteDatasource: injector(),
           ));
   //use cases
-  injector
-      .registerLazySingleton<GetCategories>(() => GetCategories(injector()));
+  injector.registerLazySingleton<GetCategories>(() => GetCategories(injector()));
   injector.registerLazySingleton<AddCategory>(() => AddCategory(injector()));
+  injector.registerLazySingleton(() => DeleteCategory(injector()));
+  injector.registerLazySingleton(() => GetCategory(injector()));
 }

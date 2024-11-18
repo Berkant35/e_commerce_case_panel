@@ -1,3 +1,4 @@
+import 'package:ECommercePanel/features/category/domain/entities/category_editable_entity.dart';
 import 'package:ECommercePanel/features/category/domain/entities/category_entity.dart';
 import 'package:ECommercePanel/features/category/domain/repositories/category_repository.dart';
 
@@ -26,5 +27,18 @@ class CategoryRepositoriesImp extends CategoryRepository {
         metaKeywords: metaKeywords,
         status: status);
     return response;
+  }
+
+  @override
+  Future<bool> deleteCategory(String id) async {
+    final response = await categoryRemoteDatasource.deleteCategory(id);
+    return response;
+  }
+
+  @override
+  Future<CategoryEditableEntity> getCategory(String categoryId) async {
+    final category = await categoryRemoteDatasource.getCategory(categoryId);
+    return category.toCategoryEditableEntity();
+
   }
 }

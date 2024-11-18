@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/category_entity.dart';
 import '../category_viewmodel_imp.dart';
-import 'components/category_card.dart';
 import 'components/add_category_form.dart';
+import 'components/category_card.dart';
 
 class CategoryPage extends ConsumerStatefulWidget {
   const CategoryPage({super.key});
@@ -38,7 +38,10 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
               itemCount: categories!.length,
               itemBuilder: (context, index) {
                 final category = categories[index];
-                return CategoryCard(category: category);
+                return CategoryCard(
+                  category: category,
+                  onDelete: () => setState(() {}),
+                );
               },
             );
           } else {

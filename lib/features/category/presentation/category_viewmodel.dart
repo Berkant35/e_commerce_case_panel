@@ -10,4 +10,5 @@ abstract class CategoryViewModel {
     required List<String> metaKeywords,
     required bool status,
   });
+  Future<void> deleteCategory(String id);
 }

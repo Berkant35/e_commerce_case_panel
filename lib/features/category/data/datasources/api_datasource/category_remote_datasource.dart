@@ -10,5 +10,6 @@ abstract class CategoryRemoteDatasource {
     required List<String> metaKeywords,
     required bool status,
 });
-  Future<void> deleteCategory(String id);
+  Future<bool> deleteCategory(String id);
+  Future<Category> getCategory(String categoryId);
 }

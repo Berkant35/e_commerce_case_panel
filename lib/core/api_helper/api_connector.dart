@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-
-
 import '../../main.dart';
 import '../config/api_config.dart';
 import 'app_exception.dart';
@@ -87,7 +84,7 @@ class ApiConnector {
 
   Future<dynamic> delete(
     String path, {
-    required Map<String, String>? body,
+     Map<String, String>? body,
     String queryParameters = "",
   }) async {
     try {
@@ -113,6 +110,8 @@ class ApiConnector {
       case 200:
       case 201:
         return _convertToJson(response.data);
+      case 204:
+        return true;
       case 401:
         throw UnauthorisedException(
             'Unauthorized access: ${response.statusMessage}');

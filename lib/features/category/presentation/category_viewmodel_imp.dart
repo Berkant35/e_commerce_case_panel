@@ -1,5 +1,6 @@
 import 'package:ECommercePanel/features/category/domain/entities/category_entity.dart';
 import 'package:ECommercePanel/features/category/domain/usecases/add_category.dart';
+import 'package:ECommercePanel/features/category/domain/usecases/delete_category.dart';
 import 'package:ECommercePanel/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -56,5 +57,17 @@ class CategoriesControlNotifier extends StateNotifier<List<CategoryEntity>>
       logger.e(e);
       return false;
     }
+  }
+
+  @override
+  Future<bool> deleteCategory(String id) async {
+    final res = await injector<DeleteCategory>().call(id);
+    if (res) {
+      final list = await injector<GetCategories>().call(null);
+      list.then((value) {
+        changState(value);
+      });
+    }
+    return res;
   }
 }

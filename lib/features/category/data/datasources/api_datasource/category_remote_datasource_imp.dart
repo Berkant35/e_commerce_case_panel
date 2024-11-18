@@ -25,8 +25,9 @@ class CategoryRemoteDatasourceImp extends CategoryRemoteDatasource {
       "metaKeywords": metaKeywords.join(","),
     });
     bool isSuccessful = false;
-    if(response.runtimeType == Map<String, dynamic>){
-      isSuccessful = (response["name"] as String).toLowerCase() == name.toLowerCase();
+    if (response.runtimeType == Map<String, dynamic>) {
+      isSuccessful =
+          (response["name"] as String).toLowerCase() == name.toLowerCase();
     }
     logger.w("Add category success status: $isSuccessful");
 
@@ -34,9 +35,11 @@ class CategoryRemoteDatasourceImp extends CategoryRemoteDatasource {
   }
 
   @override
-  Future<void> deleteCategory(String id) {
-    // TODO: implement deleteCategory
-    throw UnimplementedError();
+  Future<bool> deleteCategory(String id) async {
+    final res =
+        await apiConnector.delete(Paths.categories, queryParameters: "/$id");
+
+    return res.runtimeType == bool && res;
   }
 
   @override
@@ -47,5 +50,12 @@ class CategoryRemoteDatasourceImp extends CategoryRemoteDatasource {
       return category;
     }).toList();
     return categoryList;
+  }
+
+  @override
+  Future<Category> getCategory(String categoryId) async  {
+     var response = await apiConnector.get(Paths.categories, queryParameters: "/$categoryId");
+    final category = Category.fromJson(response as Map<String, dynamic>);
+    return category;
   }
 }

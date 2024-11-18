@@ -1,4 +1,5 @@
 
+import '../entities/category_editable_entity.dart';
 import '../entities/category_entity.dart';
 
 abstract class CategoryRepository {
@@ -9,4 +10,6 @@ abstract class CategoryRepository {
     required List<String> metaKeywords,
     required bool status,
   });
+  Future<bool> deleteCategory(String id);
+  Future<CategoryEditableEntity> getCategory(String categoryId);
 }
