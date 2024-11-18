@@ -1,19 +1,20 @@
-
+import 'package:ECommercePanel/core/enums/snack_bar_type.dart';
 import 'package:ECommercePanel/core/extensions/padding_extension.dart';
 import 'package:ECommercePanel/core/extensions/radius_extension.dart';
+import 'package:ECommercePanel/core/widgets/snacks/snack_base.dart';
+import 'package:ECommercePanel/features/product/presentation/product_viewmodel_imp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../../core/routes/route_names.dart';
 import '../../../domain/entities/product_entity.dart';
 
 class ProductCart extends ConsumerWidget {
   final ProductEntity product;
-
+  final VoidCallback onDelete;
   const ProductCart({
     super.key,
     required this.product,
+    required this.onDelete,
   });
 
   @override
@@ -21,9 +22,7 @@ class ProductCart extends ConsumerWidget {
     return Padding(
       padding: context.paddingNormal,
       child: GestureDetector(
-        onTap: () {
-
-        },
+        onTap: () {},
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: context.radiusLow,
@@ -74,6 +73,24 @@ class ProductCart extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
+              //delete
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  ref
+                      .read(currentProductList.notifier)
+                      .deleteProduct(product.id)
+                      .then((value) {
+                    SnackBase.showSnackBar(context,
+                        message: value
+                            ? "Silme işlemi başarılı"
+                            : "Bir şeyler ters gitti",
+                        type:
+                            value ? SnackBarType.success : SnackBarType.failed);
+                    onDelete();
+                  });
+                },
               ),
             ],
           ),

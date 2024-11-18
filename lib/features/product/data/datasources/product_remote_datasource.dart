@@ -6,6 +6,6 @@ import 'package:ECommercePanel/features/product/domain/entities/proudct_detail_e
 abstract class ProductRemoteDatasource{
   Future<List<Product>> getProducts(String categoryId);
   Future<Product> getProduct(int id);
-  Future<void> addProduct(ProductDetailEntity product);
-  Future<void> deleteProduct(int id);
+  Future<bool> addProduct(Map<String,dynamic> data);
+  Future<bool> deleteProduct(String id);
 }

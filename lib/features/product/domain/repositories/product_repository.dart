@@ -6,6 +6,6 @@ import 'package:ECommercePanel/features/product/domain/entities/proudct_detail_e
 abstract class ProductRepository {
   Future<List<ProductEntity>> getProducts(String categoryId);
   Future<ProductDetailEntity> getProduct(int id);
-  Future<void> addProduct(ProductDetailEntity product);
-  Future<void> deleteProduct(int id);
+  Future<bool> addProduct(Map<String,dynamic> product);
+  Future<bool> deleteProduct(String id);
 }

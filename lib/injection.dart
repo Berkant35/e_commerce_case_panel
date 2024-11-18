@@ -5,6 +5,8 @@ import 'package:ECommercePanel/features/category/domain/usecases/delete_category
 import 'package:ECommercePanel/features/category/domain/usecases/edit_category.dart';
 import 'package:ECommercePanel/features/category/domain/usecases/get_category.dart';
 import 'package:ECommercePanel/features/product/data/datasources/product_remote_datasource.dart';
+import 'package:ECommercePanel/features/product/domain/usecases/add_product.dart';
+import 'package:ECommercePanel/features/product/domain/usecases/delete_product.dart';
 import 'package:ECommercePanel/features/product/domain/usecases/get_products.dart';
 import 'package:get_it/get_it.dart';
 
@@ -29,26 +31,24 @@ void initializeDependencies() {
 
   // Hive Connector lazy
   injector.registerLazySingleton<HiveConnector>(
-          () => HiveConnector("e_commerce_panel"));
+      () => HiveConnector("e_commerce_panel"));
 
   // Api
   injector.registerLazySingleton<CategoryRemoteDatasource>(
-          () => CategoryRemoteDatasourceImp(apiConnector: injector()));
+      () => CategoryRemoteDatasourceImp(apiConnector: injector()));
   injector.registerLazySingleton<ProductRemoteDatasource>(
-          () => ProductRemoteDatasourceImp(apiConnector: injector()));
+      () => ProductRemoteDatasourceImp(apiConnector: injector()));
 
   //Repositories
   injector
-      .registerLazySingleton<CategoryRepository>(() =>
-      CategoryRepositoriesImp(
-        categoryRemoteDatasource: injector(),
-      ));
-  injector.registerLazySingleton<ProductRepository>(() =>
-      ProductRepositoryImp(
+      .registerLazySingleton<CategoryRepository>(() => CategoryRepositoriesImp(
+            categoryRemoteDatasource: injector(),
+          ));
+  injector.registerLazySingleton<ProductRepository>(() => ProductRepositoryImp(
         productRemoteDatasource: injector(),
       ));
 
-  //use cases
+  //Use Cases
   injector
       .registerLazySingleton<GetCategories>(() => GetCategories(injector()));
   injector.registerLazySingleton<AddCategory>(() => AddCategory(injector()));
@@ -57,4 +57,7 @@ void initializeDependencies() {
   injector.registerLazySingleton<GetCategory>(() => GetCategory(injector()));
   injector.registerLazySingleton<EditCategory>(() => EditCategory(injector()));
   injector.registerLazySingleton<GetProducts>(() => GetProducts(injector()));
+  injector.registerLazySingleton<AddProduct>(() => AddProduct(injector()));
+  injector
+      .registerLazySingleton<DeleteProduct>(() => DeleteProduct(injector()));
 }

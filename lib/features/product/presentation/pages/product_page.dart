@@ -1,4 +1,5 @@
 import 'package:ECommercePanel/features/category/presentation/category_detail_viewmodel_imp.dart';
+import 'package:ECommercePanel/features/product/presentation/pages/components/add_product_form.dart';
 import 'package:ECommercePanel/features/product/presentation/product_viewmodel_imp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,7 +58,10 @@ class _ProductPageState extends ConsumerState<ProductPage> {
               itemBuilder: (context, index) {
                 final product = products[index];
 
-                return ProductCart(product: product);
+                return ProductCart(
+                  product: product,
+                  onDelete: () => setState(() {}),
+                );
               },
             );
           } else {
@@ -82,7 +86,7 @@ class _ProductPageState extends ConsumerState<ProductPage> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => const SizedBox(),
+      builder: (context) => const AddProductForm(),
     ).then((value) => setState(() {}));
   }
 }

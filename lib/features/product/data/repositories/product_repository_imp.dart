@@ -21,15 +21,13 @@ class ProductRepositoryImp extends ProductRepository {
   }
 
   @override
-  Future<void> addProduct(ProductDetailEntity product) async  {
-    // TODO: implement addProduct
-    throw UnimplementedError();
+  Future<bool> addProduct(Map<String,dynamic> product) async  {
+    return await productRemoteDatasource.addProduct(product);
   }
 
   @override
-  Future<void> deleteProduct(int id) async  {
-    // TODO: implement deleteProduct
-    throw UnimplementedError();
+  Future<bool> deleteProduct(String id) async  {
+    return await productRemoteDatasource.deleteProduct(id);
   }
 
   @override

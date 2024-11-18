@@ -34,6 +34,7 @@ class ApiConnector {
     final interceptor = InterceptorsWrapper(
       onRequest: (options, handler) {
         logger.i('Request: ${options.method} ${options.uri}');
+
         return handler.next(options);
       },
       onResponse: (response, handler) {
@@ -71,6 +72,7 @@ class ApiConnector {
     String queryParameters = "",
   }) async {
     try {
+      logger.i("Post request body: $body");
       final lPath = createPath(path, queryParameters);
       final response = await _dio.post(lPath, data: body).timeout(
             ApiConfig.crudTimeout,

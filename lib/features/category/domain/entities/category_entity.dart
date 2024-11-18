@@ -10,7 +10,13 @@ class CategoryEntity extends Equatable {
     required this.name,
     required this.metaDescription,
   });
-
+  Map<String,dynamic> toMap(){
+    return {
+      "id":id,
+      "name":name,
+      "metaDescription":metaDescription
+    };
+  }
   @override
   List<Object?> get props => [id, name, metaDescription];
 }

@@ -1,7 +1,6 @@
 import 'package:ECommercePanel/core/api_helper/api_connector.dart';
 import 'package:ECommercePanel/features/product/data/datasources/product_remote_datasource.dart';
 import 'package:ECommercePanel/features/product/data/models/product.dart';
-import 'package:ECommercePanel/features/product/domain/entities/proudct_detail_entity.dart';
 
 import '../../../../core/config/paths.dart';
 
@@ -11,15 +10,15 @@ class ProductRemoteDatasourceImp extends ProductRemoteDatasource {
   ProductRemoteDatasourceImp({required this.apiConnector});
 
   @override
-  Future<void> addProduct(ProductDetailEntity product) async {
-    // TODO: implement addProduct
-    throw UnimplementedError();
+  Future<bool> addProduct(Map<String, dynamic> data) async {
+    await apiConnector.post(Paths.products, body: data);
+    return true;
   }
 
   @override
-  Future<void> deleteProduct(int id) async {
-    // TODO: implement deleteProduct
-    throw UnimplementedError();
+  Future<bool> deleteProduct(String id) async {
+    await apiConnector.delete(Paths.products, queryParameters: "/$id");
+    return true;
   }
 
   @override
