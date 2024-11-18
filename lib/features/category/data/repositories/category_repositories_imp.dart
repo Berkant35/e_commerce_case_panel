@@ -39,6 +39,12 @@ class CategoryRepositoriesImp extends CategoryRepository {
   Future<CategoryEditableEntity> getCategory(String categoryId) async {
     final category = await categoryRemoteDatasource.getCategory(categoryId);
     return category.toCategoryEditableEntity();
+  }
 
+  @override
+  Future<bool> editCategory(
+      String categoryId, Map<String, dynamic> edited) async {
+    await categoryRemoteDatasource.editCategory(categoryId, edited);
+    return true;
   }
 }

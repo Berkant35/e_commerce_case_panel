@@ -82,6 +82,24 @@ class ApiConnector {
     }
   }
 
+  //put
+  Future<dynamic> put(
+    String path, {
+    required Map<String, dynamic>? body,
+    String queryParameters = "",
+  }) async {
+    try {
+      final lPath = createPath(path, queryParameters);
+      final response = await _dio.put(lPath, data: body).timeout(
+            ApiConfig.crudTimeout,
+            onTimeout: () => throw TimeoutException('Connection timed out'),
+          );
+      return _handleResponse(response);
+    } on DioException catch (e) {
+      _handleDioError(e);
+    }
+  }
+
   Future<dynamic> delete(
     String path, {
      Map<String, String>? body,

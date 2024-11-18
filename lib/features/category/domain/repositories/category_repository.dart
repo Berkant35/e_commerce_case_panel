@@ -12,4 +12,5 @@ abstract class CategoryRepository {
   });
   Future<bool> deleteCategory(String id);
   Future<CategoryEditableEntity> getCategory(String categoryId);
+  Future<bool> editCategory(String categoryId,Map<String,dynamic> edited);
 }

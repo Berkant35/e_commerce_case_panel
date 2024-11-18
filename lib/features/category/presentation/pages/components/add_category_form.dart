@@ -115,7 +115,10 @@ class AddCategoryForm extends ConsumerWidget {
                           }
                         : null,
                     child: !loadingController.value
-                        ? const Text('Save')
+                        ? const Text(
+                            'Save',
+                            style: TextStyle(color: Colors.white),
+                          )
                         : const Center(
                             child: CircularProgressIndicator.adaptive(),
                           ),

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../injection.dart';
 import '../domain/entities/category_editable_entity.dart';
+import '../domain/usecases/edit_category.dart';
 import 'category_detail_viewmodel.dart';
 
 final selectedCategoryProvider = StateNotifierProvider<
@@ -21,9 +22,13 @@ class SelectedCategoryEntityControlNotifier
   }
 
   @override
-  Future<void> editCategory() {
-    // TODO: implement editCategory
-    throw UnimplementedError();
+  Future<bool> editCategory(CategoryEditableEntity editableCategory) async {
+    try{
+      return await injector<EditCategory>().call(editableCategory.toMap());
+    }catch(e){
+      logger.e(e);
+      return false;
+    }
   }
 
   @override

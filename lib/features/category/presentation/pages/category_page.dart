@@ -67,6 +67,6 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) => const AddCategoryForm(),
-    );
+    ).then((value) => setState(() {}));
   }
 }

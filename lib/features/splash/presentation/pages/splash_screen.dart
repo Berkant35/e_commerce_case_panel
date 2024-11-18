@@ -60,7 +60,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Welcome to IDEASOFT",
+                    "IDEASOFT Panel",
                     style: Theme.of(context).textTheme.displayMedium,
                     textAlign: TextAlign.center,
                   ),

@@ -53,9 +53,19 @@ class CategoryRemoteDatasourceImp extends CategoryRemoteDatasource {
   }
 
   @override
-  Future<Category> getCategory(String categoryId) async  {
-     var response = await apiConnector.get(Paths.categories, queryParameters: "/$categoryId");
+  Future<Category> getCategory(String categoryId) async {
+    var response = await apiConnector.get(Paths.categories,
+        queryParameters: "/$categoryId");
     final category = Category.fromJson(response as Map<String, dynamic>);
     return category;
+  }
+
+  @override
+  Future<bool> editCategory(
+      String categoryId, Map<String, dynamic> params) async {
+     await apiConnector.put(Paths.categories,
+        queryParameters: "/$categoryId", body: params);
+    return true;
+
   }
 }

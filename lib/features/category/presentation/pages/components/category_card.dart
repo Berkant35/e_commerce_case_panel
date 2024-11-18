@@ -45,7 +45,7 @@ class _CategoryCardState extends ConsumerState<CategoryCard> {
           children: [
             Text(widget.category.metaDescription),
             const Text(
-              "Go to details...",
+              "Detaylar...",
               style: TextStyle(
                 color: Colors.blue,
                 decoration: TextDecoration.underline,

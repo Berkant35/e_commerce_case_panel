@@ -12,4 +12,5 @@ abstract class CategoryRemoteDatasource {
 });
   Future<bool> deleteCategory(String id);
   Future<Category> getCategory(String categoryId);
+  Future<bool> editCategory(String categoryId,Map<String,dynamic> params);
 }

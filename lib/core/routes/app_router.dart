@@ -23,7 +23,7 @@ class AppRouter {
           path: '/categoryDetail',
           name: RouteNames.categoryDetail,
           builder: (context, state) {
-          return CategoryDetail(); // Ekrana parametreyi gönder
+          return const CategoryDetail(); // Ekrana parametreyi gönder
         },
       ),
       GoRoute(

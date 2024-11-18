@@ -4,5 +4,5 @@ import 'package:ECommercePanel/features/category/domain/entities/category_editab
 
 abstract class SelectedCategoryDetailViewModel {
   Future<CategoryEditableEntity?> getCategoryWithCategoryId();
-  Future<void> editCategory();
+  Future<bool> editCategory(CategoryEditableEntity editableCategory);
 }
