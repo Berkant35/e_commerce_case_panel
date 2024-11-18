@@ -70,7 +70,7 @@ class ApiConnector {
 
   Future<dynamic> post(
     String path, {
-    required Map<String, String>? body,
+    required Map<String, dynamic>? body,
     String queryParameters = "",
   }) async {
     try {

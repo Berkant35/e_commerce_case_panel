@@ -29,14 +29,14 @@ Future<void> main() async {
       .then((_) {
     runApp(
       const ProviderScope(
-        child: StoreFrontApp(),
+        child: PanelApp(),
       ),
     );
   });
 }
 
-class StoreFrontApp extends StatelessWidget {
-  const StoreFrontApp({super.key});
+class PanelApp extends StatelessWidget {
+  const PanelApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-name: untitled
+name: ECommercePanel
 description: "Panel for E-Commerce Case"
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -37,3 +37,5 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - .env
+

@@ -36,7 +36,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     await _animationController.forward(); // Animasyonu başlat
     await Future.delayed(const Duration(seconds: 1)); // Splash süresi
     if (mounted) {
-      context.goNamed(RouteNames.home); // HomeScreen'e yönlendir
+      context.goNamed(RouteNames.category); // HomeScreen'e yönlendir
     }
   }
 
