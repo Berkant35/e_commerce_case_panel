@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/constants/assets.dart';
 import '../../../../core/routes/route_names.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -50,13 +51,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
           builder: (context, child) {
             return Opacity(
               opacity: _opacityAnimation.value,
-              child:  Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.shopping_cart,
-                    size: 100,
-                    color: Colors.white,
+                  Image.asset(
+                    Assets.logo,
+                    width: 150,
+                    height: 150,
+                    fit: BoxFit.contain,
                   ),
                   const SizedBox(height: 20),
                   Text(

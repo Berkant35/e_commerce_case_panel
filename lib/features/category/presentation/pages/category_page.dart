@@ -66,7 +66,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => const AddCategoryForm(),
+      builder: (context) => const SafeArea(child: AddCategoryForm()),
     ).then((value) => setState(() {}));
   }
 }

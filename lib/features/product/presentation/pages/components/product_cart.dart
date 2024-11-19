@@ -5,6 +5,7 @@ import 'package:ECommercePanel/core/widgets/snacks/snack_base.dart';
 import 'package:ECommercePanel/features/product/presentation/product_viewmodel_imp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../domain/entities/product_entity.dart';
 
@@ -29,7 +30,7 @@ class ProductCart extends ConsumerWidget {
           ),
           elevation: 2,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
@@ -37,7 +38,6 @@ class ProductCart extends ConsumerWidget {
                     const BorderRadius.vertical(top: Radius.circular(8)),
                 child: Image.network(
                   "https:${product.image}",
-                  height: 100, // Daha küçük görsel
                   width: double.infinity,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {

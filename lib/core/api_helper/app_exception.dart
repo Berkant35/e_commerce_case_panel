@@ -1,4 +1,3 @@
-
 class AppException implements Exception {
   final dynamic _message;
   final dynamic _prefix;

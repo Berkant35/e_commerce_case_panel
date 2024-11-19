@@ -1,9 +1,12 @@
 import 'package:ECommercePanel/core/enums/snack_bar_type.dart';
+import 'package:ECommercePanel/core/extensions/padding_extension.dart';
+import 'package:ECommercePanel/core/extensions/widget_extension.dart';
 import 'package:ECommercePanel/core/widgets/snacks/snack_base.dart';
 import 'package:ECommercePanel/features/category/presentation/category_viewmodel_imp.dart';
 import 'package:ECommercePanel/features/category/presentation/pages/components/status_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddCategoryForm extends ConsumerWidget {
   const AddCategoryForm({super.key});
@@ -17,7 +20,7 @@ class AddCategoryForm extends ConsumerWidget {
     final statusController = ValueNotifier<bool>(false);
     final loadingController = ValueNotifier<bool>(false);
     return Padding(
-      padding: MediaQuery.of(context).viewInsets.add(const EdgeInsets.all(16)),
+      padding: context.paddingNormal,
       child: Form(
         key: formKey,
         child: Column(
@@ -27,7 +30,6 @@ class AddCategoryForm extends ConsumerWidget {
               'Kategori Ekle',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -41,7 +43,6 @@ class AddCategoryForm extends ConsumerWidget {
                 return null;
               },
             ),
-            const SizedBox(height: 16),
             TextFormField(
               controller: metaDescriptionController,
               decoration: const InputDecoration(
@@ -55,7 +56,6 @@ class AddCategoryForm extends ConsumerWidget {
                 return null;
               },
             ),
-            const SizedBox(height: 16),
             TextFormField(
               controller: metaKeywordsController,
               decoration: const InputDecoration(
@@ -69,12 +69,10 @@ class AddCategoryForm extends ConsumerWidget {
                 return null;
               },
             ),
-            const SizedBox(height: 16),
             StatusSwitch(
               statusController: statusController,
               label: 'Status',
             ),
-            const SizedBox(height: 24),
             ValueListenableBuilder(
                 valueListenable: loadingController,
                 builder: (context, value, child) {
@@ -116,7 +114,7 @@ class AddCategoryForm extends ConsumerWidget {
                         : null,
                     child: !loadingController.value
                         ? const Text(
-                            'Save',
+                            'Kaydet',
                             style: TextStyle(color: Colors.white),
                           )
                         : const Center(
@@ -124,8 +122,8 @@ class AddCategoryForm extends ConsumerWidget {
                           ),
                   );
                 }),
-            const SizedBox(height: 16),
-          ],
+            SizedBox(height: 22.h,)
+          ].withSpaceBetween(height: 4.h),
         ),
       ),
     );

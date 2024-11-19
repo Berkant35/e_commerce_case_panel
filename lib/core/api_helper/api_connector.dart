@@ -8,13 +8,10 @@ import 'app_exception.dart';
 class ApiConnector {
   late Dio _dio;
 
-  /// Initialize
   ApiConnector() {
-    logger.i("ApiConnector init...");
     init(ApiConfig.baseUrl, ApiConfig.headers);
   }
 
-  /// initialize the Dio instance
   void init(String baseUrl, Map<String, dynamic>? headers) {
     final baseOptions = BaseOptions(
       baseUrl: baseUrl,
@@ -34,7 +31,6 @@ class ApiConnector {
     final interceptor = InterceptorsWrapper(
       onRequest: (options, handler) {
         logger.i('Request: ${options.method} ${options.uri}');
-
         return handler.next(options);
       },
       onResponse: (response, handler) {
@@ -72,7 +68,6 @@ class ApiConnector {
     String queryParameters = "",
   }) async {
     try {
-      logger.i("Post request body: $body");
       final lPath = createPath(path, queryParameters);
       final response = await _dio.post(lPath, data: body).timeout(
             ApiConfig.crudTimeout,
@@ -104,7 +99,7 @@ class ApiConnector {
 
   Future<dynamic> delete(
     String path, {
-     Map<String, String>? body,
+    Map<String, String>? body,
     String queryParameters = "",
   }) async {
     try {
@@ -121,7 +116,6 @@ class ApiConnector {
 
   String createPath(String path, String queryParameters) {
     final tPath = "${_dio.options.baseUrl}$path$queryParameters";
-    logger.w("End point with queries: $tPath");
     return tPath;
   }
 
