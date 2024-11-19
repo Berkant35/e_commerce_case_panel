@@ -7,5 +7,4 @@ class Paths{
 class FilterPaths{
   FilterPaths._();
   static const categoryIds = 'categoryIds';
-  static const searchQuery = 's';
 }

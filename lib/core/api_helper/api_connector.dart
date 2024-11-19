@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-
-
 import '../../main.dart';
 import '../config/api_config.dart';
 import 'app_exception.dart';
@@ -11,13 +8,10 @@ import 'app_exception.dart';
 class ApiConnector {
   late Dio _dio;
 
-  /// Initialize
   ApiConnector() {
-    logger.i("ApiConnector init...");
     init(ApiConfig.baseUrl, ApiConfig.headers);
   }
 
-  /// initialize the Dio instance
   void init(String baseUrl, Map<String, dynamic>? headers) {
     final baseOptions = BaseOptions(
       baseUrl: baseUrl,
@@ -70,7 +64,7 @@ class ApiConnector {
 
   Future<dynamic> post(
     String path, {
-    required Map<String, String>? body,
+    required Map<String, dynamic>? body,
     String queryParameters = "",
   }) async {
     try {
@@ -85,9 +79,27 @@ class ApiConnector {
     }
   }
 
+  //put
+  Future<dynamic> put(
+    String path, {
+    required Map<String, dynamic>? body,
+    String queryParameters = "",
+  }) async {
+    try {
+      final lPath = createPath(path, queryParameters);
+      final response = await _dio.put(lPath, data: body).timeout(
+            ApiConfig.crudTimeout,
+            onTimeout: () => throw TimeoutException('Connection timed out'),
+          );
+      return _handleResponse(response);
+    } on DioException catch (e) {
+      _handleDioError(e);
+    }
+  }
+
   Future<dynamic> delete(
     String path, {
-    required Map<String, String>? body,
+    Map<String, String>? body,
     String queryParameters = "",
   }) async {
     try {
@@ -104,7 +116,6 @@ class ApiConnector {
 
   String createPath(String path, String queryParameters) {
     final tPath = "${_dio.options.baseUrl}$path$queryParameters";
-    logger.w("End point with queries: $tPath");
     return tPath;
   }
 
@@ -113,6 +124,8 @@ class ApiConnector {
       case 200:
       case 201:
         return _convertToJson(response.data);
+      case 204:
+        return true;
       case 401:
         throw UnauthorisedException(
             'Unauthorized access: ${response.statusMessage}');
